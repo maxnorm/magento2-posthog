@@ -1,4 +1,4 @@
-# Indexa_Posthog — Event reference
+PostHog Event reference
 
 This document lists every event sent by **Indexa_Posthog** and all properties included in each. Use it for building PostHog insights, filters, breakdowns, and dashboards.
 

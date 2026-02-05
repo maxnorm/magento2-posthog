@@ -1,6 +1,10 @@
-# Indexa_Posthog — PostHog Analytics for Magento 2
+<span align="center">
+  <img src="docs/readme-hero.png" alt="PostHog Analytics for Magento 2" />
+</span>
 
-Open-source Magento 2 module that integrates [PostHog](https://posthog.com) product analytics with **cookieless mode**, a **consent extension point**, and **pre-configured ecommerce events** aligned with [PostHog’s ecommerce spec](https://posthog.com/docs/data/event-spec/ecommerce-events).
+# PostHog Analytics for Magento 2
+
+Magento 2 module that integrates [PostHog](https://posthog.com) product analytics with **cookieless mode**, a **consent extension point**, and **pre-configured ecommerce events** aligned with [PostHog’s ecommerce spec](https://posthog.com/docs/data/event-spec/ecommerce-events).
 
 ## Features
 
@@ -12,7 +16,7 @@ Open-source Magento 2 module that integrates [PostHog](https://posthog.com) prod
 
 ## Requirements
 
-- Magento 2.4.x (tested on 2.4.x; may work on earlier 2.x with minimal changes).
+- Magento 2.4.X (tested on 2.4.6; may work on earlier version with minimal changes).
 - PHP 8.1+.
 
 ## Installation
@@ -32,8 +36,6 @@ bin/magento setup:static-content:deploy -f
 bin/magento cache:flush
 ```
 
-If you use **Warden**: run the above via `warden env exec php-fpm bin/magento ...`.
-
 ## Configuration
 
 **Stores → Configuration → General → PostHog**
@@ -42,7 +44,7 @@ If you use **Warden**: run the above via `warden env exec php-fpm bin/magento ..
 |--------|--------------|
 | **Enable PostHog** | Turn the integration on/off. |
 | **PostHog Project API Key** | Your project API key (e.g. `phc_...`). Stored encrypted. |
-| **API Host** | PostHog host, e.g. `https://eu.i.posthog.com` or `https://us.i.posthog.com`. Use your [reverse proxy](https://posthog.com/docs/advanced/proxy) URL if you proxy PostHog. |
+| **API Host** | PostHog host, e.g. `https://eu.i.posthog.com` or `https://us.i.posthog.com`. Use your [reverse proxy](https://posthog.com/docs/advanced/proxy) URL if you have one (Recommended). |
 | **Person Profiles** | Always / Identified Only / Never. Use **Never** with cookieless to avoid storing person data. |
 | **Cookieless Mode** | **Cookieless always** (default) / **Cookieless until consent** / **Use cookies**. |
 
@@ -91,7 +93,6 @@ For a **full list of event names and properties** (for filters, breakdowns, and 
 Use PostHog **Product analytics** to build funnels, trends, retention, and paths from these events.
 
 - **Quick start** — [docs/PRODUCT_ANALYSIS_GUIDE.md](docs/PRODUCT_ANALYSIS_GUIDE.md): insight ideas, step-by-step funnel/trends, and **suggested dashboard layouts**.
-- **Templates** — [docs/posthog-ecommerce-templates.md](../../docs/posthog-ecommerce-templates.md) (project root): UI and API options for creating insights.
 
 ## Documentation
 
@@ -99,9 +100,6 @@ Use PostHog **Product analytics** to build funnels, trends, retention, and paths
 |----------|--------------|
 | [docs/EVENT_REFERENCE.md](docs/EVENT_REFERENCE.md) | Event names and all properties (reference). |
 | [docs/PRODUCT_ANALYSIS_GUIDE.md](docs/PRODUCT_ANALYSIS_GUIDE.md) | Product Analysis insights and dashboard layouts. |
-| [docs/CODE_REVIEW_NOTES.md](docs/CODE_REVIEW_NOTES.md) | Optional code-quality improvements and automated checks. |
-| [docs/posthog-ecommerce-templates.md](../../docs/posthog-ecommerce-templates.md) | How to create funnel/trends in UI or via API. |
-| [docs/posthog-integration-improvements.md](../../docs/posthog-integration-improvements.md) | Spec alignment and improvement ideas. |
 
 ## License
 
@@ -109,4 +107,8 @@ OSL-3.0 / AFL-3.0. See [LICENSE](LICENSE).
 
 ## Contributing
 
+This module is still in development!
+
 Contributions are welcome. Please open an issue or pull request.
+
+***Disclaimer: This module is not an official module provided and supported by PostHog.***
