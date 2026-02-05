@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="after.body.start">
+            <container name="posthog.consent.banner" htmlTag="div" htmlClass="posthog-consent-banner-container" before="-"/>
+            <block class="Indexa\Posthog\Block\Script" name="indexa.posthog.script" template="Indexa_Posthog::script.phtml" after="posthog.consent.banner"/>
+            <block class="Indexa\Posthog\Block\Ecommerce\SessionEvents" name="indexa.posthog.session.events"
+                   template="Indexa_Posthog::ecommerce/session_events.phtml" after="indexa.posthog.script"/>
+        </referenceContainer>
+    </body>
+</page>

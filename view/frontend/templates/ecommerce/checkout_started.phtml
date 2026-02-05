@@ -1,0 +1,29 @@
+<?php
+/**
+ * @var \Indexa\Posthog\Block\Ecommerce\CheckoutStarted $block
+ */
+
+if (!$block->shouldRender()) {
+    return;
+}
+
+$payload = $block->getCheckoutStartedPayload();
+$payloadJson = json_encode($payload, JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP);
+?>
+<script>
+(function() {
+    var payload = <?= /* @noEscape */ $payloadJson ?>;
+    function capture() {
+        if (window.posthog && window.posthog.capture) {
+            window.posthog.capture('Checkout Started', payload);
+        } else {
+            setTimeout(capture, 100);
+        }
+    }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', capture);
+    } else {
+        capture();
+    }
+})();
+</script>

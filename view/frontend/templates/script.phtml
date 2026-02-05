@@ -1,0 +1,42 @@
+<?php
+/**
+ * @var \Indexa\Posthog\Block\Script $block
+ */
+
+if (!$block->shouldRender()) {
+    return;
+}
+
+$projectApiKey = $block->escapeJs($block->getProjectApiKey());
+$apiHost = $block->escapeJs($block->getApiHost());
+$apiHostTrimmed = rtrim($block->getApiHost(), '/');
+$personProfiles = $block->getPersonProfiles();
+$cookielessMode = $block->getCookielessMode();
+
+$options = ['api_host' => $apiHostTrimmed];
+if ($cookielessMode === 'always') {
+    $options['cookieless_mode'] = 'always';
+    $options['person_profiles'] = 'never';
+    $options['defaults'] = '2025-11-30';
+} elseif ($cookielessMode === 'on_reject') {
+    $options['cookieless_mode'] = 'on_reject';
+    $options['person_profiles'] = $personProfiles;
+} else {
+    $options['person_profiles'] = $personProfiles;
+}
+$optionsJson = json_encode($options, JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP);
+?>
+<script>
+(function() {
+    var script = document.createElement('script');
+    script.src = '<?= /* @noEscape */ $apiHost ?>'.replace(/\/+$/, '') + '/static/array.js';
+    script.async = true;
+    script.onload = function() {
+        if (window.posthog && window.posthog.init) {
+            window.posthog.init('<?= /* @noEscape */ $projectApiKey ?>', <?= /* @noEscape */ $optionsJson ?>);
+            document.dispatchEvent(new CustomEvent('posthog:ready'));
+        }
+    };
+    document.head.appendChild(script);
+})();
+</script>

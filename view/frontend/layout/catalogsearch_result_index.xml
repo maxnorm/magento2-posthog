@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="after.body.start">
+            <block class="Indexa\Posthog\Block\Ecommerce\ProductsSearched"
+                   name="indexa.posthog.products.searched"
+                   template="Indexa_Posthog::ecommerce/products_searched.phtml"
+                   after="indexa.posthog.session.events"/>
+            <block class="Indexa\Posthog\Block\Ecommerce\ProductListViewed"
+                   name="indexa.posthog.product.list.viewed"
+                   template="Indexa_Posthog::ecommerce/product_list_viewed.phtml"
+                   after="indexa.posthog.products.searched"/>
+        </referenceContainer>
+    </body>
+</page>

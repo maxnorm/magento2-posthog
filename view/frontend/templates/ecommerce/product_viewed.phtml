@@ -1,0 +1,33 @@
+<?php
+/**
+ * @var \Indexa\Posthog\Block\Ecommerce\ProductViewed $block
+ */
+
+if (!$block->shouldRender()) {
+    return;
+}
+
+$payload = $block->getProductViewedPayload();
+if (empty($payload)) {
+    return;
+}
+
+$payloadJson = json_encode($payload, JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP);
+?>
+<script>
+(function() {
+    var payload = <?= /* @noEscape */ $payloadJson ?>;
+    function capture() {
+        if (window.posthog && window.posthog.capture) {
+            window.posthog.capture('Product Viewed', payload);
+        } else {
+            setTimeout(capture, 100);
+        }
+    }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', capture);
+    } else {
+        capture();
+    }
+})();
+</script>
