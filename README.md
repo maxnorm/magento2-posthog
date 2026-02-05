@@ -1,6 +1,8 @@
-<img src="docs/readme-hero.png" alt="PostHog Analytics for Magento 2" />
+![PostHog Analytics for Magento 2](docs/readme-hero.png)
 
 # PostHog Analytics for Magento 2
+
+> ***Still in development***
 
 Magento 2 module that integrates [PostHog](https://posthog.com) product analytics with **cookieless mode**, a **consent extension point**, and **pre-configured ecommerce events** aligned with [PostHog’s ecommerce spec](https://posthog.com/docs/data/event-spec/ecommerce-events).
 
