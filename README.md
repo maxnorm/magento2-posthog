@@ -1,6 +1,4 @@
-<span align="center">
-  <img src="docs/readme-hero.png" alt="PostHog Analytics for Magento 2" />
-</span>
+<img src="docs/readme-hero.png" alt="PostHog Analytics for Magento 2" />
 
 # PostHog Analytics for Magento 2
 
